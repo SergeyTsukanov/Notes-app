@@ -1,22 +1,19 @@
 // Import our custom CSS
 import "../scss/styles.scss";
+import notesUtils from "./utils";
 
 // Import all of Bootstrap's JS
 // import * as bootstrap from "bootstrap";
 
-console.log("hi");
-
-const addTaskBtn = document.querySelector(".addTask");
+const addNoteBtn = document.querySelector(".addNote");
 const closeFormBtn = document.querySelector(".closeForm");
-const addTaskForm = document.getElementById("#addTaskForm");
-console.log(addTaskBtn);
-console.log(addTaskForm);
+const addNoteForm = document.getElementById("#addNoteForm");
 
-addTaskBtn.addEventListener(
+addNoteBtn.addEventListener(
   "click",
   () => {
-    addTaskForm.style.display = "block";
-    addTaskBtn.style.display = "none";
+    addNoteForm.style.display = "block";
+    addNoteBtn.style.display = "none";
     closeFormBtn.style.display = "block";
   },
   false
@@ -25,10 +22,19 @@ addTaskBtn.addEventListener(
 closeFormBtn.addEventListener(
   "click",
   () => {
-    addTaskBtn.style.display = "block";
-    addTaskForm.style.display = "none";
+    addNoteBtn.style.display = "block";
+    addNoteForm.style.display = "none";
     closeFormBtn.style.display = "none";
   },
   false
 );
 
+addNoteForm.addEventListener(
+  "submit",
+  (e) => {
+    e.preventDefault();
+    const formData = new FormData(e.target);
+      notesUtils.createNote(formData)
+  },
+  false
+);

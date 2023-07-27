@@ -1,7 +1,7 @@
 {
   "name": "hometask1",
   "version": "1.0.0",
-  "sourceType":"module",
+  "sourceType": "module",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -17,6 +17,7 @@
     "vite": "^4.4.7"
   },
   "dependencies": {
-    "bootstrap": "^5.3.1"
+    "bootstrap": "^5.3.1",
+    "uuid": "^9.0.0"
   }
 }
