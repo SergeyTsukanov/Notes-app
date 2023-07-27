@@ -34,7 +34,9 @@ addNoteForm.addEventListener(
   (e) => {
     e.preventDefault();
     const formData = new FormData(e.target);
-      notesUtils.createNote(formData)
+    notesUtils.createNote(formData);
+    addNoteForm.reset();
+    closeFormBtn.click();
   },
   false
 );
