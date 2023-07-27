@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Bootstrap w/ Vite</title>
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <h1>Task notes App</h1>
+            <h3 style="display: none">List of tasks is empty</h3>
+        </div>
+        <div class="row">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">Name</th>
+                        <th scope="col">Created</th>
+                        <th scope="col">Category</th>
+                        <th scope="col">Content</th>
+
+                        <th scope="col">Dates</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th scope="row">1</th>
+                        <td>Mark</td>
+                        <td>Otto</td>
+                        <td>@mdo</td>
+                        <td>@mdo</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <button class="btn btn-primary addTask">Add Task</button>
+        <button class="btn btn-danger closeForm" style="display: none">
+            Close
+        </button>
+        <div class="d-flex justify-content-center">
+            <div class="w-50" >
+                <form id="#addTaskForm" style="display: none">
+                    <div class="mb-3">
+                        <label for="taskName" class="form-label">Task name</label>
+                        <input type="text" class="form-control" id="taskName" required />
+                    </div>
+                    <div class="mb-3">
+                        <label for="taskContent" class="form-label">Content</label>
+                        <textarea type="text" class="form-control" id="taskContent" required></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label for="taskCategory" class="form-label">
+                            Choose task category</label>
+                        <select class="form-select" aria-label="Default select example" id="taskCategory" required>
+                            <option value="" selected>...</option>
+                            <option value="1">One</option>
+                            <option value="2">Two</option>
+                            <option value="3">Three</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-primary mt-3">Submit</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script type="module" src="./js/main.js"></script>
+</body>
+
+</html>
