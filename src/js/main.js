@@ -1,5 +1,6 @@
 // Import our custom CSS
 import "../scss/styles.scss";
+import "bootstrap";
 import notesUtils from "./utils";
 
 // Import all of Bootstrap's JS
@@ -46,7 +47,7 @@ appNotes.addEventListener(
   "click",
   (e) => {
     if (e.target.dataset.action === "delete") {
-        notesUtils.removeNote(e)
+      notesUtils.removeNote(e);
     }
   },
   false
