@@ -10,9 +10,10 @@ const addNoteBtn = document.querySelector(".addNote");
 const closeFormBtn = document.querySelector(".closeForm");
 const addNoteForm = document.getElementById("#addNoteForm");
 const appNotes = document.getElementById("#notes");
+const appArchivedNotes = document.getElementById("#archivedNotes");
 const updateNoteForm = document.getElementById("#updateNoteForm");
 const updateNoteFormModal = document.getElementById("exampleModal");
-const closeModalBtn = document.getElementById("closeUpdateForm")
+const closeModalBtn = document.getElementById("closeUpdateForm");
 
 addNoteBtn.addEventListener(
     "click",
@@ -52,9 +53,8 @@ updateNoteForm.addEventListener(
         const formData = new FormData(e.target);
         console.log(formData);
         notesUtils.updateNote(formData);
-        updateNoteForm.reset()
-        closeModalBtn.click()
-
+        updateNoteForm.reset();
+        closeModalBtn.click();
     },
     false
 );
@@ -67,6 +67,24 @@ appNotes.addEventListener(
         } else if (e.target.dataset.action === "edit") {
             console.log("edit");
             notesUtils.onOpenUpdateForm(e);
+        } else if (e.target.dataset.action === "archive") {
+            console.log("edit");
+            notesUtils.toggleArchiveNote(e);
+        }
+    },
+    false
+);
+appArchivedNotes.addEventListener(
+    "click",
+    (e) => {
+        if (e.target.dataset.action === "delete") {
+            notesUtils.removeNote(e);
+        } else if (e.target.dataset.action === "edit") {
+            console.log("edit");
+            notesUtils.onOpenUpdateForm(e);
+        } else if (e.target.dataset.action === "archive") {
+            console.log("edit");
+            notesUtils.toggleArchiveNote(e);
         }
     },
     false
