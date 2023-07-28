@@ -2,7 +2,7 @@ import { v4 as uuidv4 } from "uuid";
 let notes = [];
 
 const renderItem = (item) => {
-  const noteHTML = `<tr data-key=${item.id}>
+    const noteHTML = `<tr data-key=${item.id}>
         <th scope="row">${item.name}</th>
         <td>${item.created}</td>
         <td>${item.category}</td>
@@ -33,39 +33,95 @@ const renderItem = (item) => {
         </td>
     </tr>`;
 
-  const notes = document.getElementById("#notes");
-  notes.insertAdjacentHTML("beforeend", noteHTML);
+    //check if note already exist
+    const note = document.querySelector(`[data-key="${item.id}"]`);
+    console.log(note);
+
+    if (note) {
+        console.log("replace note");
+        note.innerHTML = noteHTML;
+    } else {
+        const notes = document.getElementById("#notes");
+        notes.insertAdjacentHTML("beforeend", noteHTML);
+    }
 };
 
 const createNote = (formData) => {
-  const newNote = {
-    id: uuidv4(),
-    name: formData.get("noteName"),
-    created: new Date().toDateString(),
-    category: formData.get("noteCategory"),
-    content: formData.get("noteContent"),
-    isArchive: false,
-    dates: [],
-  };
-  notes = [...notes, newNote];
-  renderItem(newNote);
+    const newNote = {
+        id: uuidv4(),
+        name: formData.get("noteName"),
+        created: new Date().toDateString(),
+        category: formData.get("noteCategory"),
+        content: formData.get("noteContent"),
+        isArchive: false,
+        dates: [],
+    };
+    notes = [...notes, newNote];
+    console.log(notes);
+    renderItem(newNote);
 };
 const removeNote = (event) => {
-  const parentNode = event.target.closest("tr");
-  const noteId = parentNode.dataset.key;
-  notes = [...notes.filter((note) => note.id !== noteId)];
-  parentNode.remove();
+    const parentNode = event.target.closest("tr");
+    const noteId = parentNode.dataset.key;
+    notes = [...notes.filter((note) => note.id !== noteId)];
+    parentNode.remove();
 };
-const updateNote = (id, updatedNote) => {
-  notes = notes.map((note) => {
-    note.id === id ? { ...note, ...updatedNote } : note;
-  });
+const updateNote = (formData) => {
+    const id = formData.get("id");
+    console.log(notes);
+    console.log(id);
+    const updatedNoteContent = formData.get("updateNoteContent");
+    const updatedNoteName = formData.get("updateNoteName");
+    const updatedNoteCategory = formData.get("updateNoteCategory");
+
+    notes = notes.map((note) => {
+        return note.id === id
+            ? {
+                ...note,
+                name: updatedNoteName,
+                category: updatedNoteCategory,
+                content: updatedNoteContent,
+            }
+            : note;
+    });
+
+    console.log(notes);
+    const updatedNote = notes.find((note) => note.id === id);
+    console.log(updatedNote);
+    renderItem(updatedNote);
 };
-const toggleArchiveNote = (id) => {};
+
+const onOpenUpdateForm = (event) => {
+    const parentNode = event.target.closest("tr");
+    const noteId = parentNode.dataset.key;
+    const noteToUpdate = notes.find((note) => note.id === noteId);
+
+    //set updateForm values
+    const noteToUpdateId = document.getElementById("noteId");
+    const noteName = document.getElementById("updateNoteName");
+    const noteContent = document.getElementById("updateNoteContent");
+    const noteCategory = document.getElementById("updateNoteCategory");
+    noteToUpdateId.value = noteToUpdate.id;
+    noteName.value = noteToUpdate.name;
+    noteContent.value = noteToUpdate.content;
+    noteCategory.value = noteToUpdate.category;
+};
+const onCloseUpdateForm = () => {
+    //set updateForm values
+    const updateNoteName = document.getElementById("updateNoteName");
+    const updateNoteContent = document.getElementById("updateNoteContent");
+    const updateNoteCategory = document.getElementById("updateNoteCategory");
+    updateNoteName.value = "";
+    updateNoteContent.value = "";
+    updateNoteCategory.value = "";
+};
+const toggleArchiveNote = (id) => { };
 
 export default {
-  removeNote,
-  createNote,
-  updateNote,
-  toggleArchiveNote,
+    removeNote,
+    createNote,
+    updateNote,
+    toggleArchiveNote,
+    onOpenUpdateForm,
+    onCloseUpdateForm,
 };

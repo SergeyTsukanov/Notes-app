@@ -141,6 +141,7 @@
             <div class="modal-header">
               <h1 class="modal-title fs-5" id="exampleModalLabel">Edit Note</h1>
               <button
+                id="closeUpdateForm"
                 type="button"
                 class="btn-close"
                 data-bs-dismiss="modal"
@@ -161,6 +162,7 @@
                     required
                   />
                 </div>
+                <div style="display: none"><input name="id" id="noteId" /></div>
                 <div class="mb-3">
                   <label for="updateNoteContent" class="form-label"
                     >Content</label
@@ -194,22 +196,6 @@
                   Submit
                 </button>
               </form>
-            </div>
-            <div class="modal-footer">
-              <button
-                type="button"
-                class="btn btn-secondary"
-                data-bs-dismiss="modal"
-              >
-                Close
-              </button>
-              <button
-                type="button"
-                class="btn btn-primary"
-                data-bs-dismiss="modal"
-              >
-                > Save changes
-              </button>
             </div>
           </div>
         </div>
