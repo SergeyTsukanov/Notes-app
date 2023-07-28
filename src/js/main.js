@@ -8,6 +8,7 @@ import notesUtils from "./utils";
 const addNoteBtn = document.querySelector(".addNote");
 const closeFormBtn = document.querySelector(".closeForm");
 const addNoteForm = document.getElementById("#addNoteForm");
+const appNotes = document.getElementById("#notes");
 
 addNoteBtn.addEventListener(
   "click",
@@ -37,6 +38,16 @@ addNoteForm.addEventListener(
     notesUtils.createNote(formData);
     addNoteForm.reset();
     closeFormBtn.click();
+  },
+  false
+);
+
+appNotes.addEventListener(
+  "click",
+  (e) => {
+    if (e.target.dataset.action === "delete") {
+        notesUtils.removeNote(e)
+    }
   },
   false
 );

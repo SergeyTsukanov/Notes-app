@@ -1,8 +1,10 @@
 @import "~bootstrap/scss/bootstrap";
 
-
-.actionButton{
-background: none;
-border: none;
+.actionButton {
+  background: none;
+  border: none;
 }
 
+.pointerNone {
+   pointer-events: none;
+}
