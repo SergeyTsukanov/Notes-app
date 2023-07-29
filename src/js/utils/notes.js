@@ -7,6 +7,7 @@ import {
   getNoteItemById,
 } from "./state";
 import noteMarkup from "../constants/noteMarkup";
+import parseDates from "./parseDates";
 console.log(notes);
 
 const renderItem = (item) => {
@@ -34,7 +35,7 @@ const createNote = (formData) => {
     category: formData.get("noteCategory"),
     content: formData.get("noteContent"),
     isArchive: false,
-    dates: [],
+    dates: parseDates(formData.get("noteContent")),
   };
 
   addNoteItem(newNote);
@@ -61,6 +62,7 @@ const updateNote = (formData) => {
     name: updatedNoteName,
     category: updatedNoteCategory,
     content: updatedNoteContent,
+    dates: parseDates(updatedNoteContent),
   };
 
   updateNoteItem(id, updatedNote);

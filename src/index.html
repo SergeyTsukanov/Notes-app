@@ -14,7 +14,10 @@
             <h3 style="display: none">List of notes is empty</h3>
         </div>
         <div class="row">
-            <table class="table" >
+            <table class="table">
+                <caption>
+                    List of notes
+                </caption>
                 <thead>
                     <tr>
                         <th scope="col">Name</th>
@@ -26,8 +29,7 @@
                         <th></th>
                     </tr>
                 </thead>
-                <tbody id="#notes">
-                </tbody>
+                <tbody id="#notes"></tbody>
             </table>
         </div>
         <button class="btn btn-primary addNote">Add Note</button>
@@ -110,6 +112,9 @@
             Hide Archive Posts
         </button>
         <table id="#archivedNotes" class="table" style="display: none">
+            <caption>
+                List of archived notes
+            </caption>
             <thead>
                 <tr>
                     <th scope="col">Name</th>
@@ -154,7 +159,10 @@
                 </tr>
             </tbody>
         </table>
-        <table id="#stats" class="table">
+        <table id="#stats" class="table mt-3">
+            <caption>
+                Summary
+            </caption>
             <thead>
                 <tr>
                     <th scope="col">Notes Category</th>
@@ -164,9 +172,19 @@
             </thead>
             <tbody>
                 <tr>
-                    <td>Notes Name</td>
-                    <td>Active</td>
-                    <td>Archived</td>
+                    <td>Task</td>
+                    <td>0</td>
+                    <td>0</td>
+                </tr>
+                <tr>
+                    <td>Random thought</td>
+                    <td>0</td>
+                    <td>0</td>
+                </tr>
+                <tr>
+                    <td>Idea</td>
+                    <td>0</td>
+                    <td>0</td>
                 </tr>
             </tbody>
         </table>
