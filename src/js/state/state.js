@@ -1,6 +1,8 @@
 import categories from "../constants/categories";
+import { v4 as uuidv4 } from "uuid";
 
-let notes = [];
+let notes = [
+];
 
 const addNoteItem = (note) => {
   notes = [...notes, note];

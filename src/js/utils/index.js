@@ -1,4 +1,5 @@
-import { onCloseUpdateForm, onOpenUpdateForm } from "../notes";
+import { onCloseUpdateForm, onOpenUpdateForm } from "./formsUtils";
 import parseDates from "./parseDates";
+import prepopulate from "./prepopulate";
 
-export { parseDates, onCloseUpdateForm, onOpenUpdateForm };
+export { parseDates, onCloseUpdateForm, onOpenUpdateForm, prepopulate };

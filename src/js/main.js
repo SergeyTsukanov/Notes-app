@@ -1,14 +1,10 @@
 // Import our custom CSS
 import "../scss/styles.scss";
 import "bootstrap";
-import {
-  removeNote,
-  createNote,
-  updateNote,
-  toggleArchiveNote,
-} from "./notes";
+import { removeNote, createNote, updateNote, toggleArchiveNote } from "./notes";
 import { renderStats } from "./state";
 import { onCloseUpdateForm, onOpenUpdateForm } from "./utils/formsUtils";
+import { prepopulate } from "./utils";
 
 // Import all of Bootstrap's JS
 // import * as bootstrap from "bootstrap";
@@ -124,3 +120,6 @@ updateNoteFormModal.addEventListener(
   },
   false
 );
+
+prepopulate();
+renderStats();
