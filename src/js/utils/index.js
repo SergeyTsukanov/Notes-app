@@ -1,3 +1,5 @@
-import notesUtils from "./notes";
+import { onCloseUpdateForm, onOpenUpdateForm } from "./formsUtils";
+import parseDates from "./parseDates";
+import prepopulate from "./prepopulate";
 
-export default notesUtils;
+export { parseDates, onCloseUpdateForm, onOpenUpdateForm, prepopulate };
