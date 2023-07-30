@@ -11,7 +11,6 @@ const removeNoteItem = (noteId) => {
 };
 
 const updateNoteItem = (id, payload) => {
-  console.log("BeforeUpdate", notes);
   notes = notes.map((note) => {
     return note.id === id
       ? {
@@ -20,7 +19,6 @@ const updateNoteItem = (id, payload) => {
         }
       : note;
   });
-  console.log("AfterUpdate", notes);
 };
 
 const getNoteItemById = (id) => {
@@ -54,7 +52,6 @@ const countStats = () => {
     statTable[category] = { archived: 0, active: 0 };
   }
 
-  console.log(statTable);
   for (const note of notes) {
     if (note.isArchive) {
       statTable[note.category].archived += 1;
@@ -66,7 +63,6 @@ const countStats = () => {
   return statTable;
 };
 const renderStats = () => {
-  console.log(notes);
   const statsTable = document.getElementById("#stats");
   const stats = countStats();
   let innerHtml = ``;

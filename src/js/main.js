@@ -1,8 +1,14 @@
 // Import our custom CSS
 import "../scss/styles.scss";
 import "bootstrap";
-import notesUtils from "./utils";
-import { renderStats } from "./utils/state";
+import {
+  removeNote,
+  createNote,
+  updateNote,
+  toggleArchiveNote,
+} from "./notes";
+import { renderStats } from "./state";
+import { onCloseUpdateForm, onOpenUpdateForm } from "./utils/formsUtils";
 
 // Import all of Bootstrap's JS
 // import * as bootstrap from "bootstrap";
@@ -63,7 +69,7 @@ addNoteForm.addEventListener(
   (e) => {
     e.preventDefault();
     const formData = new FormData(e.target);
-    notesUtils.createNote(formData);
+    createNote(formData);
     addNoteForm.reset();
     closeFormBtn.click();
     renderStats();
@@ -75,8 +81,7 @@ updateNoteForm.addEventListener(
   (e) => {
     e.preventDefault();
     const formData = new FormData(e.target);
-    console.log(formData);
-    notesUtils.updateNote(formData);
+    updateNote(formData);
     updateNoteForm.reset();
     closeModalBtn.click();
     renderStats();
@@ -88,13 +93,11 @@ appNotes.addEventListener(
   "click",
   (e) => {
     if (e.target.dataset.action === "delete") {
-      notesUtils.removeNote(e);
+      removeNote(e);
     } else if (e.target.dataset.action === "edit") {
-      console.log("edit");
-      notesUtils.onOpenUpdateForm(e);
+      onOpenUpdateForm(e);
     } else if (e.target.dataset.action === "archive") {
-      console.log("edit");
-      notesUtils.toggleArchiveNote(e);
+      toggleArchiveNote(e);
     }
     renderStats();
   },
@@ -104,13 +107,11 @@ appArchivedNotes.addEventListener(
   "click",
   (e) => {
     if (e.target.dataset.action === "delete") {
-      notesUtils.removeNote(e);
+      removeNote(e);
     } else if (e.target.dataset.action === "edit") {
-      console.log("edit");
-      notesUtils.onOpenUpdateForm(e);
+      onOpenUpdateForm(e);
     } else if (e.target.dataset.action === "archive") {
-      console.log("edit");
-      notesUtils.toggleArchiveNote(e);
+      toggleArchiveNote(e);
     }
     renderStats();
   },
@@ -119,7 +120,7 @@ appArchivedNotes.addEventListener(
 updateNoteFormModal.addEventListener(
   "hidden.bs.modal",
   () => {
-    notesUtils.onCloseUpdateForm();
+    onCloseUpdateForm();
   },
   false
 );

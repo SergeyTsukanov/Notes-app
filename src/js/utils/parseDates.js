@@ -6,7 +6,6 @@ const parseDates = (str) => {
   while ((match = regexp.exec(str)) !== null) {
     allMatches.push(match[0]);
   }
-  console.log(allMatches.join(","));
 
   return allMatches.join(", ");
 };

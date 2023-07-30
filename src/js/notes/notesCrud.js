@@ -5,27 +5,9 @@ import {
   removeNoteItem,
   updateNoteItem,
   getNoteItemById,
-} from "./state";
-import noteMarkup from "../constants/noteMarkup";
-import parseDates from "./parseDates";
-console.log(notes);
-
-const renderItem = (item) => {
-  const noteHTML = noteMarkup(item);
-  const note = document.querySelector(`[data-key="${item.id}"]`);
-
-  if (note) {
-    note.innerHTML = noteHTML;
-  } else {
-    let notes;
-    if (!item.isArchive) {
-      notes = document.getElementById("#notes");
-    } else {
-      notes = document.getElementById("#archivedNotes");
-    }
-    notes.insertAdjacentHTML("beforeend", noteHTML);
-  }
-};
+} from "../state";
+import parseDates from "../utils/parseDates";
+import { renderItem } from "../render";
 
 const createNote = (formData) => {
   const newNote = {
@@ -41,6 +23,7 @@ const createNote = (formData) => {
   addNoteItem(newNote);
   renderItem(newNote);
 };
+
 const removeNoteMarkup = (event) => {
   const parentNode = event.target.closest("tr");
   parentNode.remove();
@@ -70,30 +53,6 @@ const updateNote = (formData) => {
   renderItem(note);
 };
 
-const onOpenUpdateForm = (event) => {
-  const parentNode = event.target.closest("tr");
-  const noteId = parentNode.dataset.key;
-  const noteToUpdate = notes.find((note) => note.id === noteId);
-
-  //set updateForm values
-  const noteToUpdateId = document.getElementById("noteId");
-  const noteName = document.getElementById("updateNoteName");
-  const noteContent = document.getElementById("updateNoteContent");
-  const noteCategory = document.getElementById("updateNoteCategory");
-  noteToUpdateId.value = noteToUpdate.id;
-  noteName.value = noteToUpdate.name;
-  noteContent.value = noteToUpdate.content;
-  noteCategory.value = noteToUpdate.category;
-};
-const onCloseUpdateForm = () => {
-  //set updateForm values
-  const updateNoteName = document.getElementById("updateNoteName");
-  const updateNoteContent = document.getElementById("updateNoteContent");
-  const updateNoteCategory = document.getElementById("updateNoteCategory");
-  updateNoteName.value = "";
-  updateNoteContent.value = "";
-  updateNoteCategory.value = "";
-};
 const toggleArchiveNote = (event) => {
   const parentNode = event.target.closest("tr");
   const noteId = parentNode.dataset.key;
@@ -104,11 +63,9 @@ const toggleArchiveNote = (event) => {
   renderItem(noteToRender);
 };
 
-export default {
+export {
   removeNote,
   createNote,
   updateNote,
   toggleArchiveNote,
-  onOpenUpdateForm,
-  onCloseUpdateForm,
 };
